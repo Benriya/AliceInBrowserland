@@ -1,0 +1,19 @@
+<div style="display: inline-block">
+  <div style="display: inline-block">
+  <ul>
+    <li *ngFor="let name of productName">
+      {{name}}
+    </li>
+  </ul>
+  </div>
+    <div style="display: inline-block">
+  <ul>
+    <li *ngFor="let price of productPrice">
+      {{price}} Ft
+    </li>
+  </ul>
+    </div>
+</div>
+<div>
+  <h5>Total Price: {{totalPrice}}</h5>
+</div>

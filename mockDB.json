@@ -1,0 +1,11 @@
+{
+  "products" : [
+    {
+      "id": 1,
+      "name" : "Lisa",
+      "description" : "A wonderful view of nature",
+      "img" : "src/assets/productPics/mouse.jpg",
+      "price" : 10
+      }
+    ]
+}

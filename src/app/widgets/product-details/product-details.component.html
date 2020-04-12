@@ -1,0 +1,15 @@
+<div>
+  <div class="container" style="position: absolute; left: 10%; top: 15%; width: auto">
+    <div class="picture">
+      <img [src]="selectedProduct.imgSrc">
+    </div>
+    <h3 class="row-cols-1" style="position: relative; display: inline-block; left: 50%; top: 0">{{selectedProduct.name}}</h3>
+    <div>
+      <span class="piece row-cols-1"><strong>Price: </strong>{{selectedProduct.price}}</span>
+    </div>
+    <div>
+      <span class="piece row-cols-2"><strong>Description: </strong>{{selectedProduct.description}}</span>
+    </div>
+    <button class="btn btn-primary" style="margin-left: 20px" [routerLink]="['/home', selectedProduct ]">Buy</button>
+  </div>
+</div>

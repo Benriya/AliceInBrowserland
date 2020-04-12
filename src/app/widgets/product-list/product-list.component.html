@@ -1,0 +1,16 @@
+<div>
+  <ul style="list-style-type: none">
+    <li *ngFor="let product of products">
+    <div class="picture">
+      <img [src]="product.imgSrc">
+    </div>
+      <div style="display: inline-block">
+        <div class="piece"><a [routerLink]="['/product-details', product ]">{{product.name}}</a></div>
+        <div class="piece"><span>Price: {{product.price}}</span></div>
+        <div class="piece"><span>Description: {{product.description}}</span></div>
+      </div>
+      <button class="btn btn-primary" style="margin-left: 20px" (click)="onClick({ name: product.name, price: product.price})">Buy</button>
+      <hr>
+    </li>
+  </ul>
+</div>
