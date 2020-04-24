@@ -1,15 +1,29 @@
-<div>
-  <div class="container" style="position: absolute; left: 10%; top: 15%; width: auto">
-    <div class="picture">
-      <img [src]="selectedProduct.imgSrc">
+<mat-card>
+  <mat-card-content class="card">
+    <div class="card__content">
+      <div class="picture">
+        <img mat-card-image class="picture__product" [src]="selectedProduct.imgSrc">
+      </div>
+        <mat-card-title class="row-cols-1 card__name" style="display: inline-block">{{selectedProduct.name}}</mat-card-title>
+      <div class="piece">
+        <div>
+          <span class="piece__text row-cols-1"><strong>Price: </strong>{{selectedProduct.price}}</span>
+        </div>
+        <div>
+          <span class="piece__text row-cols-2"><strong>Description: </strong>{{selectedProduct.description}}</span>
+        </div>
+      </div>
+      <div class="card__content-buttons">
+        <button [ngClass]="buttonClassCreate()" style="margin-left: 20px" [routerLink]="['/home']">Back to product list</button>
+        <button [ngClass]="buttonClassCreate()" style="margin-left: 20px" (click)="wishForSuccess({name: selectedProduct.name, price: selectedProduct.price})">Buy</button>
+        <button [ngClass]="buttonClassCreate()" style="margin-left: 20px" (click)="starAppear()">Like</button>
+        <img mat-card-image class="star" src="../../../assets/productPics/star.png" *ngIf="liked">
+      </div>
     </div>
-    <h3 class="row-cols-1" style="position: relative; display: inline-block; left: 50%; top: 0">{{selectedProduct.name}}</h3>
-    <div>
-      <span class="piece row-cols-1"><strong>Price: </strong>{{selectedProduct.price}}</span>
-    </div>
-    <div>
-      <span class="piece row-cols-2"><strong>Description: </strong>{{selectedProduct.description}}</span>
-    </div>
-    <button class="btn btn-primary" style="margin-left: 20px" [routerLink]="['/home', selectedProduct ]">Buy</button>
-  </div>
-</div>
+    <ul class="list">
+      <li class="list__item" *ngFor="let i of arr(pieces).fill(1)">
+        <img mat-card-image class="list__item-gif"  [src]="gifChange()">
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

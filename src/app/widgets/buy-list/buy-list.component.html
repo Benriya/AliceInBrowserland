@@ -1,19 +1,15 @@
-<div style="display: inline-block">
-  <div style="display: inline-block">
-  <ul>
-    <li *ngFor="let name of productName">
-      {{name}}
+<mat-card style="display: inline-block">
+  <mat-card-title>Buy list</mat-card-title>
+  <mat-card-content style="display: inline-block">
+  <ul class="items">
+    <li *ngFor="let item of buyList">
+      <span class="items__item-name">{{item.name}}</span>
+      <span class="items__item-price">{{item.price}} Ft</span>
     </li>
   </ul>
-  </div>
-    <div style="display: inline-block">
-  <ul>
-    <li *ngFor="let price of productPrice">
-      {{price}} Ft
-    </li>
-  </ul>
-    </div>
-</div>
-<div>
-  <h5>Total Price: {{totalPrice}}</h5>
-</div>
+  </mat-card-content>
+  <mat-card-subtitle>Total Price: {{totalPrice}} Ft</mat-card-subtitle>
+  <button [ngClass]="buttonClassCreate()" (click)="emptyCart()">Empty cart</button>
+  <button [ngClass]="buttonClassCreate()" (click)="calculatePrice()">Calculate</button>
+</mat-card>
+

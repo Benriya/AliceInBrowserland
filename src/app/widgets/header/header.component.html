@@ -1,0 +1,10 @@
+<mat-card class="header">
+  <mat-card-title class="header__title" [routerLink]="['/home']">{{title}}</mat-card-title>
+  <img mat-card-sm-image class="header__picture" [src]="logo">
+  <ul class="list">
+    <li class="list__item" *ngFor="let i of arr(pieces).fill(1)">
+      <img mat-card-image class="list__item-gif"  [src]="gifChange()">
+    </li>
+  </ul>
+</mat-card>
+

@@ -1,8 +1,71 @@
-img { width: 200px; height: 200px; }
-.picture {
-  display: inline-block;
+.card {
+  top: 15%;
+  width: auto;
+
+  &__name {
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #8b00ff;
+    border-radius: 20px;
+    box-shadow: 3px 6px #c054ff;
+  }
+
+  &__content {
+    display: inline-block;
+
+    &-buttons {
+        width: 500px;
+    }
+  }
 }
+
+.star {
+  width: 30px;
+  height: 30px;
+}
+
+.picture{
+  display: inline-block;
+
+  &__product {
+    width: 300px;
+    height: 300px;
+    margin: 1em;
+  }
+}
+
+.list {
+  position: absolute;
+  top: 20%;
+  right: 0;
+  display: inline-block;
+  float: right;
+
+
+  &__item {
+    top: 10%;
+    width: 150px;
+    float: right;
+    display: inline-block;
+
+    &-gif {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
+
 .piece {
-  margin-left: 10px;
+  padding: 0.5em;
+  margin: 0.5em;
   position: relative;
+  background-color: rgba(255, 122, 238, 0.9);
+  border-radius: 20px;
+  box-shadow: 3px 6px #febeff;
+
+  &__text {
+    margin-left: 30px;
+  }
 }

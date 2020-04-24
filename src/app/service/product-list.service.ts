@@ -1,25 +1,100 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import { Product } from '../Models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductListService {
 
-  products: Array<object> = [
-    { name: 'Lamp', price: 10, imgSrc: '../../assets/productPics/lamp.jpg', description: 'este azért láss is' },
-    { name: 'Mouse', price: 8, imgSrc: '../../assets/productPics/mouse.jpg', description: 'számítógépezni meg képzelettel akarsz, mi?' },
-    { name: 'Mug', price: 70, imgSrc: '../../assets/productPics/mug.jpg', description: 'legyen miből innod'  },
-    { name: 'Collar', price: 130, imgSrc: '../../assets/productPics/collar.jpg', description: 'háziállatnak tökéletes' },
-    { name: 'PlayStation', price: 10, imgSrc: '../../assets/productPics/playstation.jpg', description: 'karantén kibíró eszköz, DELUXE' },
-    { name: 'House', price: 93000, imgSrc: '../../assets/productPics/house.jpg', description: 'ház lélegzetelállító kilátással' },
-    { name: 'Fence', price: 1000, imgSrc: '../../assets/productPics/fence.jpg', description: 'Nagy Miyagi karate tanonc kerítés' },
+  gifArray = [
+    '../../assets/gifs/rainbow1.gif',
+    '../../assets/gifs/rainbow2.gif',
+    '../../assets/gifs/rainbow3.gif',
+    '../../assets/gifs/rainbow4.gif',
+    '../../assets/gifs/rainbow5.gif',
+    '../../assets/gifs/rainbow6.gif',
+    '../../assets/gifs/rainbow7.gif',
+    '../../assets/gifs/rainbow8.gif',
+    '../../assets/gifs/rainbow9.gif',
+    '../../assets/gifs/rainbow10.gif',
+    '../../assets/gifs/rainbow11.gif',
   ];
 
-  constructor() { }
+  logoArray = [
+    '../../../assets/logoPics/logo1.png',
+    '../../../assets/logoPics/logo2.jpg',
+    '../../../assets/logoPics/logo3.jpg',
+    '../../../assets/logoPics/logo4.jpg',
+    '../../../assets/logoPics/logo5.png',
+    '../../../assets/logoPics/logo6.jpg'
+  ];
 
-  getProducts() {
-    return of(this.products);
+  buttonClass = [
+    'btn btn-primary',
+    'btn btn-secondary',
+    'btn btn-warning',
+    'btn btn-success',
+    'btn btn-danger',
+    'btn btn-info',
+    'btn btn-light',
+    'btn btn-dark',
+    'btn btn-link'
+  ];
+
+  constructor(private httpClient: HttpClient) { }
+
+  getGifs() {
+    return this.gifArray;
+  }
+
+  getLogos() {
+    return this.logoArray;
+  }
+
+  getButtonClasses() {
+    return this.buttonClass;
+  }
+
+  /*selectAll() {
+    for (const item of this.products) {
+      this.httpClient.post('https://aliceinbrowserland.firebaseio.com/productList.json', item).subscribe(data => {
+        console.log(data);
+      });
+    }
+  }*/
+
+  onBuyProduct(postData: {name: string, price: number}) {
+    this.httpClient.post('https://aliceinbrowserland.firebaseio.com/buylist.json', postData).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  getBuyList(array: Array<Product>) {
+    this.httpClient.get('https://aliceinbrowserland.firebaseio.com/buylist.json').pipe(map(data => {
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          array.push(data[key]);
+        }
+      }
+      return array;
+    })).subscribe();
+  }
+
+  onEmptyCart() {
+    return this.httpClient.delete('https://aliceinbrowserland.firebaseio.com/buylist.json');
+  }
+
+  getProducts(array: Array<Product>) {
+    this.httpClient.get('https://aliceinbrowserland.firebaseio.com/productList.json').pipe(map(data => {
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          array.push(data[key]);
+        }
+      }
+      return array;
+    })).subscribe();
   }
 }

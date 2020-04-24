@@ -1,0 +1,37 @@
+.header {
+  background-color: #fe94ff;
+
+  &__title {
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: 2em;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__picture {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.list {
+  position: absolute;
+  top: 20%;
+  right: 0;
+  display: inline-block;
+  float: right;
+
+
+  &__item {
+    top: 10%;
+    width: 150px;
+    float: right;
+    display: inline-block;
+
+    &-gif {
+      width: 70px;
+      height: 70px;
+    }
+  }
+}

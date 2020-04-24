@@ -1,9 +1,9 @@
-<h2>{{title}}</h2>
-<app-drop-down-select></app-drop-down-select>
-<div style="display: inline-block; position: absolute; left: 30%">
-  <app-product (product)="onSelected($event)"></app-product>
-</div>
-<div style="display: inline; position: absolute;">
-  <h3>Buy list</h3>
-  <app-buy-list [productName]="productName" [productPrice]="productPrice" [totalPrice]="totalPrice"></app-buy-list>
+<div>
+  <mat-card style="display: inline-block; position: absolute; left: 30%">
+    <!--<button class="btn btn-warning" (click)="superwise()">override</button>-->
+    <app-product></app-product>
+  </mat-card>
+  <div style="display: inline; position: absolute;">
+    <app-buy-list></app-buy-list>
+  </div>
 </div>
