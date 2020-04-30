@@ -6,8 +6,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DropDownSelectComponent } from './widgets/drop-down-select/drop-down-select.component';
-import { LoginComponent } from './widgets/login/login.component';
 import { ProductListComponent } from './widgets/product-list/product-list.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { BuyListComponent } from './widgets/buy-list/buy-list.component';
@@ -19,19 +17,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatInputModule } from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './auth/login/login.component';
+import {SignupComponent} from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DropDownSelectComponent,
-    LoginComponent,
     ProductListComponent,
     BuyListComponent,
     ProductDetailsComponent,
     WelcomeComponent,
     DetailsComponent,
     HeaderComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     NgbModule,
@@ -44,7 +44,8 @@ import {FormsModule} from '@angular/forms';
     NgxPaginationModule,
     MatCheckboxModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

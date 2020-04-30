@@ -11,5 +11,6 @@
   <mat-card-subtitle>Total Price: {{totalPrice}} Ft</mat-card-subtitle>
   <button [ngClass]="buttonClassCreate()" (click)="emptyCart()">Empty cart</button>
   <button [ngClass]="buttonClassCreate()" (click)="calculatePrice()">Calculate</button>
+  <button [ngClass]="buttonClassCreate()" style="display: block" (click)="reload()">See cart items</button>
 </mat-card>
 

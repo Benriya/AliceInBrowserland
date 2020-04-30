@@ -1,6 +1,19 @@
 <mat-card class="header">
-  <mat-card-title class="header__title" [routerLink]="['/home']">{{title}}</mat-card-title>
+  <mat-card-title class="header__title" [routerLink]="isAuth ? '/home' : '/login'">{{title}}</mat-card-title>
   <img mat-card-sm-image class="header__picture" [src]="logo">
+  <div class="login">
+    <ul class="login__navigation">
+      <li class="login__navigation-item" *ngIf="!isAuth">
+        <a routerLink="/signup">Signup</a>
+      </li>
+      <li class="login__navigation-item" *ngIf="!isAuth">
+        <a routerLink="/login">Login</a>
+      </li>
+      <li class="login__navigation-item" *ngIf="isAuth">
+        <a (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
   <ul class="list">
     <li class="list__item" *ngFor="let i of arr(pieces).fill(1)">
       <img mat-card-image class="list__item-gif"  [src]="gifChange()">

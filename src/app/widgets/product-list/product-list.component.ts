@@ -11,27 +11,30 @@ import { Product } from '../../Models/product.model';
 })
 export class ProductListComponent implements OnInit {
   products: Array<Product> = [];
-  page = 1;
+  page;
   eighteen = false;
   searchOption: string;
   filteredPostsList;
-  pages = 0;
+  pages = ['1', '2', '3', '4', '5'];
   buttonClassArray = [];
+  buyList = [];
 
   constructor(private productListService: ProductListService) {  }
 
   ngOnInit() {
     this.buttonClassArray = this.productListService.getButtonClasses();
     this.productListService.getProducts(this.products);
+    this.productListService.getBuyList(this.buyList);
     this.filteredPostsList = this.products;
-    const stack = this.filteredPostsList.length;
-    this.pages = stack / 5;
-    console.log(this.pages);
-    console.log(this.filteredPostsList.length);
+    this.page = 1;
   }
 
   older() {
     this.eighteen = !this.eighteen;
+  }
+
+  switchPage(pageNumber: string) {
+    this.page = pageNumber;
   }
 
   nextPage() {
@@ -42,7 +45,7 @@ export class ProductListComponent implements OnInit {
     this.page -= 1;
   }
 
-  wishForSuccess(wish) {
+  buyProduct(wish) {
     this.productListService.onBuyProduct(wish);
   }
 

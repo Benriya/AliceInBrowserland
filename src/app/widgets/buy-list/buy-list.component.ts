@@ -1,12 +1,12 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {ProductListService} from '../../service/product-list.service';
+import { Component, OnInit } from '@angular/core';
+import { ProductListService } from '../../service/product-list.service';
 
 @Component({
   selector: 'app-buy-list',
   templateUrl: './buy-list.component.html',
   styleUrls: ['./buy-list.component.scss']
 })
-export class BuyListComponent implements OnInit, OnChanges {
+export class BuyListComponent implements OnInit {
   buyList = [];
   totalPrice = 0;
   buttonClassArray = [];
@@ -18,13 +18,10 @@ export class BuyListComponent implements OnInit, OnChanges {
     this.productListService.getBuyList(this.buyList);
   }
 
-  ngOnChanges() {
-
-  }
-
   emptyCart() {
     this.productListService.onEmptyCart().subscribe(() => {
       this.buyList = [];
+      window.location.reload();
     });
   }
 
@@ -39,6 +36,10 @@ export class BuyListComponent implements OnInit, OnChanges {
 
   buttonClassCreate() {
     return this.buttonClassArray[Math.floor(Math.random() * 8)];
+  }
+
+  reload() {
+    window.location.reload();
   }
 
 }

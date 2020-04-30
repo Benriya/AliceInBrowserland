@@ -58,14 +58,6 @@ export class ProductListService {
     return this.buttonClass;
   }
 
-  /*selectAll() {
-    for (const item of this.products) {
-      this.httpClient.post('https://aliceinbrowserland.firebaseio.com/productList.json', item).subscribe(data => {
-        console.log(data);
-      });
-    }
-  }*/
-
   onBuyProduct(postData: {name: string, price: number}) {
     this.httpClient.post('https://aliceinbrowserland.firebaseio.com/buylist.json', postData).subscribe(data => {
       console.log(data);

@@ -6,26 +6,29 @@
         I'm older than 18y
       </label>
       <button [ngClass]="buttonClassCreate()" style="margin-left: 20px" (click)="resetSearch()">Clear search</button>
-      <mat-form-field class="example-full-width" style="margin-left: 10em">
+      <mat-form-field class="search">
         <mat-label>Search</mat-label>
         <label>
           <input matInput maxlength="256" placeholder="Search in products" name="searchOption" [(ngModel)]="searchOption" (keyup)="filteredListOptions()">
         </label>
       </mat-form-field>
     </form>
-    <ul style="list-style-type: none">
+    <ul>
       <li *ngFor="let product of filteredPostsList | paginate: { itemsPerPage: 5, currentPage: page }">
         <mat-card *ngIf="product.name != 'Dildo' || eighteen" [ngStyle]="{background: rainbow()}">
           <mat-card-content [ngStyle]="{color: rainbow()}">
             <div class="picture">
               <img mat-card-sm-image [src]="product.imgSrc">
             </div>
-            <div style="display: inline-block">
-              <mat-card-title class="piece" [routerLink]="['/product-details', product ]" [ngStyle]="{color: rainbow()}">{{product.name}}</mat-card-title>
-              <div class="piece"><span><strong>Price: </strong>{{product.price}} Ft</span></div>
-              <div class="piece"><span><strong>Description: </strong>{{product.description}}</span></div>
-             </div>
-             <button [ngClass]="buttonClassCreate()" style="margin-left: 20px;" (click)="wishForSuccess({name: product.name, price: product.price})">Buy</button>
+            <div class="listText">
+              <mat-card-title class="listText__piece-name" [routerLink]="['/product-details', product ]" [ngStyle]="{color: rainbow()}">{{product.name}}</mat-card-title>
+              <div class="listText__piece"><span><strong>Price: </strong>{{product.price}} Ft</span></div>
+              <div class="listText__piece"><span><strong>Description: </strong>{{product.description}}</span></div>
+            </div>
+            <div class="buyButton">
+              <div class="buyButton__error" *ngIf="buyList.length >= 10">No more product allowed<br>pls empty cart</div>
+              <button *ngIf="buyList.length <= 10" [ngClass]="buttonClassCreate()" (click)="buyProduct({name: product.name, price: product.price})">Buy</button>
+            </div>
           </mat-card-content>
         </mat-card>
         <hr>
@@ -33,14 +36,14 @@
     </ul>
     <nav aria-label="...">
       <ul class="pagination">
-        <li class="page-item">
-          <a [ngClass]="buttonClassCreate()" (click)="prevPage()" href="#" tabindex="-1">Previous</a>
+        <li class="page-item pagination__prev" *ngIf="page > 1">
+          <a [ngClass]="buttonClassCreate()" (click)="prevPage()">Previous</a>
         </li>
-        <li class="page-item" *ngFor="let page of pages">
-          <a class="page-link" href="#">{{page}}</a>
+        <li class="page-item pagination__numbers" *ngFor="let i of pages">
+          <a class="page-link" [ngClass]="(page == i) ? 'pagination__numbers-active' : '' " (click)="switchPage(i)">{{i}}</a>
         </li>
-        <li class="page-item">
-          <a [ngClass]="buttonClassCreate()" (click)="nextPage()" href="#">Next</a>
+        <li class="page-item pagination__next">
+          <a [ngClass]="buttonClassCreate()" *ngIf="page < 5" (click)="nextPage()">Next</a>
         </li>
       </ul>
     </nav>
